@@ -8,3 +8,5 @@ scratch.cpp
 
 build-gcc/
 scratch.exe
+
+build-clang-debug/
