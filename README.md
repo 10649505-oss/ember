@@ -1,3 +1,4 @@
+
 # `ember` — starter skeleton (Lab 1)
 
 Copy this folder to a repository of your own, `git init`, and start from **M1** of
@@ -134,3 +135,6 @@ Lab 1 — про **байти й типи**, а не про цикли, розб
 Висновок: на моєму комп'ютері тип `int` займає 4 байти, а `uint8_t` — 1 байт.
 
 Команда `cmake --build build-gcc` завершилася успішно: `[100%] Built target ember`.
+
+# ember
+
