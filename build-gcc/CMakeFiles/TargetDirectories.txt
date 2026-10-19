@@ -1,3 +1,0 @@
-C:/Users/Lenovo/Downloads/Programming-Practice-Projects-main/Programming-Practice-Projects-main/courses/programming-fundamentals/starter/build-gcc/CMakeFiles/ember.dir
-C:/Users/Lenovo/Downloads/Programming-Practice-Projects-main/Programming-Practice-Projects-main/courses/programming-fundamentals/starter/build-gcc/CMakeFiles/edit_cache.dir
-C:/Users/Lenovo/Downloads/Programming-Practice-Projects-main/Programming-Practice-Projects-main/courses/programming-fundamentals/starter/build-gcc/CMakeFiles/rebuild_cache.dir

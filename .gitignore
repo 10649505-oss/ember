@@ -5,3 +5,6 @@ build/
 *.dSYM/
 scratch
 scratch.cpp
+
+build-gcc/
+scratch.exe
