@@ -11,6 +11,7 @@
 #include <string>
 
 #include "dump.hpp"
+#include "cpu.hpp"
 #include "memory.hpp"
 
 // Turn a word into a number. Accepts decimal (65) and hex (0x41).
@@ -31,14 +32,18 @@ static void print_help() {
               << "  dump              print all " << MEM_SIZE << " bytes\n"
               << "  get <addr>        show one byte four ways\n"
               << "  set <addr> <val>  write one byte (dec or 0x hex)\n"
-                            << "  inc <addr>        increment one byte\n"
+              << "  inc <addr>        increment one byte\n"
+              << "  reg <A|B> <val>   set CPU register\n"
+              << "  regs              show CPU registers\n"
+              << "  step              execute one instruction\n"
               << "  help              this list\n"
               << "  quit              leave\n";
 }
 
 int main() {
     Memory mem;  // 4096 bytes, on the stack, zeroed by the {} in memory.hpp
-
+CPU cpu;
+cpu.mem = &mem;
     std::cout << "ember 0.1 - 4096 bytes of memory you can see. Type `help`.\n";
 
     std::string line;
@@ -106,6 +111,28 @@ int main() {
                 Byte value = mem_get(mem, (std::size_t)addr);
                 mem_set(mem, (std::size_t)addr, (Byte)(value + 1));
             }
+                    } else if (cmd == "reg") {
+            std::string name, v;
+            long value = 0;
+
+            if (!(words >> name) || !(words >> v) ||
+                !parse_number(v, value)) {
+                std::cout << "usage: reg <A|B> <value>\n";
+            } else if (value < 0 || value > 255) {
+                std::cout << "value must be 0..255\n";
+            } else if (name == "A" || name == "a") {
+                cpu.a = static_cast<Byte>(value);
+            } else if (name == "B" || name == "b") {
+                cpu.b = static_cast<Byte>(value);
+            } else {
+                std::cout << "register must be A or B\n";
+            }
+
+        } else if (cmd == "regs") {
+            dump_regs(cpu);
+
+        } else if (cmd == "step") {
+            step(cpu);
         } else {
             std::cout << "unknown command: " << cmd << " (try `help`)\n";
         }
